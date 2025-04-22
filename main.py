@@ -1,8 +1,9 @@
-print("Welcome to common banking app. What would you like to do?")
+import mysql.connector
+import time
+import os
+import keyboard
 
-menu = int(input("(1)Login:\n(2)Sign up:\n-"))
+connection = mysql.connector.connect(user = 'root', database = 'Bank', password = 'Davetali05')
+connection.close()
 
-if menu == 1:
-    print("Cool")
-if menu == 2:
-    print("Coolaroo!")
+print("Welcome to common banking app. What would you like to do?\noption1:<\noption1:\noption1:\noption1:")
