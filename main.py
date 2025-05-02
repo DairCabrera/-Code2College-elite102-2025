@@ -1,5 +1,6 @@
 import mysql.connector
 
+
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -14,22 +15,6 @@ mycursor.execute(sql)
 myresult = mycursor.fetchall()
 # print(myresult)
 
-
-def main_menu():
-    test_menu = int(input("what would you like to do?(1 withdraw, 2 deposite, 3 modify acount, 4 delete acount."))
-    if test_menu == 1:
-        print("choice")
-    elif test_menu == 2:
-        print("choice")
-    elif test_menu == 3:
-        print("choice")
-    elif test_menu == 4:
-        print("choice")
-    else:
-        print("invalid")
-        main_menu()
-
-
 def signin():
     User = input("put your name here: ")
     sql_select_user = "SELECT * FROM bank.`bank details` WHERE User = %s"
@@ -42,7 +27,11 @@ def signin():
         mycursor.execute(sql_select_pin, (User, pin_input))
         pin_data = mycursor.fetchone()
         if pin_data:
-            main_menu()
+            sql_bank_amount = "SELECT `User Balance` FROM bank.`bank details` WHERE `User` = %s AND `Pin` = %s"
+            mycursor.execute(sql_bank_amount, (User, pin_input))
+            myresult = mycursor.fetchall()
+            current_balance = myresult[0][0]
+            print(current_balance)
             return
         else:
             print("Incorrect PIN.")
@@ -52,5 +41,3 @@ def signin():
         signin()
 
 signin()
-
-def withdraw
